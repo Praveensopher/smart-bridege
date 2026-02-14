@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MarketAI Suite</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header class="app-header">
+        <div class="brand">
+            <span class="logo-circle">M</span>
+            <div class="brand-text">
+                <h1>MarketAI Suite</h1>
+                <p>Groq-powered sales &amp; marketing intelligence</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="app-main">
+        <section class="intro-card">
+            <h2>Transform campaigns, pitches, and lead scoring with AI</h2>
+            <p>
+                Powered by Groq's <strong>LLaMA 3.3 70B</strong> model, MarketAI Suite analyzes
+                your inputs in real time to generate evidence-based campaigns, persuasive pitches,
+                and quantified lead scores.
+            </p>
+        </section>
+
+        <section class="tabs">
+            <button class="tab-button active" data-tab="campaign-tab">Marketing Campaign</button>
+            <button class="tab-button" data-tab="pitch-tab">Sales Pitch</button>
+            <button class="tab-button" data-tab="lead-tab">Lead Scoring</button>
+        </section>
+
+        <section class="tab-content active" id="campaign-tab">
+            <div class="layout">
+                <form id="campaign-form" class="panel">
+                    <h3>AI-Generated Marketing Campaign</h3>
+                    <div class="field-row">
+                        <label>Product name</label>
+                        <input type="text" name="product_name" placeholder="AcmeCloud CRM" />
+                    </div>
+                    <div class="field-row">
+                        <label>Product description</label>
+                        <textarea name="product_description" rows="3" placeholder="Briefly describe your SaaS product and value."></textarea>
+                    </div>
+                    <div class="field-row">
+                        <label>Target audience</label>
+                        <input type="text" name="target_audience" placeholder="Small business owners, 10–50 employees" />
+                    </div>
+                    <div class="field-row two-col">
+                        <div>
+                            <label>Platform</label>
+                            <select name="platform" id="platform-select">
+                                <option value="LinkedIn">LinkedIn</option>
+                                <option value="Facebook">Facebook</option>
+                                <option value="Instagram">Instagram</option>
+                                <option value="Twitter/X">Twitter/X</option>
+                                <option value="Email Marketing">Email Marketing</option>
+                                <option value="YouTube">YouTube</option>
+                                <option value="TikTok">TikTok</option>
+                                <option value="Google Ads">Google Ads</option>
+                                <option value="Pinterest">Pinterest</option>
+                                <option value="Snapchat">Snapchat</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Campaign objective</label>
+                            <input type="text" name="objective" placeholder="Generate product demos" />
+                        </div>
+                    </div>
+                    <div class="field-row">
+                        <label>Tone &amp; style</label>
+                        <input type="text" name="tone" placeholder="Professional, insight-driven, customer-first" />
+                    </div>
+                    <button type="submit" class="primary-btn" id="campaign-submit-btn">
+                        Generate Marketing Campaign
+                    </button>
+                    <p class="helper-text">
+                        You’ll get objectives, 5 content ideas, 3 ad copy variations, and CTA suggestions.
+                    </p>
+                </form>
+
+                <article class="panel output-panel">
+                    <div class="panel-header">
+                        <h3>Campaign Strategy</h3>
+                        <span class="status-pill" id="campaign-status-pill">Idle</span>
+                    </div>
+                    <div id="campaign-output" class="output-content">
+                        <p class="placeholder">
+                            Submit the form to generate a complete, platform-optimized marketing campaign strategy.
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="tab-content" id="pitch-tab">
+            <div class="layout">
+                <form id="pitch-form" class="panel">
+                    <h3>Intelligent Sales Pitch</h3>
+                    <div class="field-row">
+                        <label>Solution name</label>
+                        <input type="text" name="solution_name" placeholder="AcmeCloud Enterprise Suite" />
+                    </div>
+                    <div class="field-row">
+                        <label>Prospect role</label>
+                        <input type="text" name="prospect_role" placeholder="Fortune 500 IT Director" />
+                    </div>
+                    <div class="field-row">
+                        <label>Prospect company</label>
+                        <input type="text" name="company_name" placeholder="GlobalTech Corp" />
+                    </div>
+                    <div class="field-row">
+                        <label>Key pain points</label>
+                        <textarea name="pain_points" rows="3" placeholder="E.g., legacy systems, data silos, security risk, high TCO"></textarea>
+                    </div>
+                    <div class="field-row">
+                        <label>Desired outcome</label>
+                        <input type="text" name="desired_outcome" placeholder="Secure a technical discovery meeting" />
+                    </div>
+                    <button type="submit" class="primary-btn">
+                        Generate enterprise pitch
+                    </button>
+                    <p class="helper-text">
+                        You’ll get an elevator pitch, value prop, differentiators, objection handling, and CTA.
+                    </p>
+                </form>
+
+                <article class="panel output-panel">
+                    <div class="panel-header">
+                        <h3>Sales Pitch</h3>
+                        <span class="status-pill" id="pitch-status-pill">Idle</span>
+                    </div>
+                    <div id="pitch-output" class="output-content">
+                        <p class="placeholder">
+                            Submit the form to generate an enterprise-ready pitch.
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="tab-content" id="lead-tab">
+            <div class="layout">
+                <form id="lead-form" class="panel">
+                    <h3>Lead Qualification &amp; Scoring</h3>
+                    <div class="field-row">
+                        <label>Lead name (optional)</label>
+                        <input type="text" name="lead_name" placeholder="Sarah Johnson" />
+                    </div>
+                    <div class="field-row two-col">
+                        <div>
+                            <label>Budget</label>
+                            <input type="text" name="budget" placeholder="$50,000" />
+                        </div>
+                        <div>
+                            <label>Urgency</label>
+                            <input type="text" name="urgency" placeholder="High / Medium / Low" />
+                        </div>
+                    </div>
+                    <div class="field-row two-col">
+                        <div>
+                            <label>Timeline</label>
+                            <input type="text" name="timeline" placeholder="Immediate / 3 months / 6+ months" />
+                        </div>
+                        <div>
+                            <label>Company size</label>
+                            <input type="text" name="company_size" placeholder="e.g., 2000 employees" />
+                        </div>
+                    </div>
+                    <div class="field-row two-col">
+                        <div>
+                            <label>Industry</label>
+                            <input type="text" name="industry" placeholder="SaaS / Manufacturing / Finance" />
+                        </div>
+                        <div>
+                            <label>Decision-maker role</label>
+                            <input type="text" name="decision_role" placeholder="IT Director, VP, CIO" />
+                        </div>
+                    </div>
+                    <div class="field-row">
+                        <label>Use case summary</label>
+                        <textarea name="use_case" rows="3" placeholder="Describe the project, goals, and context."></textarea>
+                    </div>
+                    <button type="submit" class="primary-btn">
+                        Score this lead
+                    </button>
+                    <p class="helper-text">
+                        You’ll receive a 0–100 score, conversion probability, and recommended next actions.
+                    </p>
+                </form>
+
+                <article class="panel output-panel">
+                    <div class="panel-header">
+                        <h3>Lead Score &amp; Insights</h3>
+                        <span class="status-pill" id="lead-status-pill">Idle</span>
+                    </div>
+                    <div id="lead-output" class="output-content">
+                        <p class="placeholder">
+                            Submit the form to generate a scored, fully qualified lead analysis.
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <span>Built for intelligent, data-driven GTM teams • Powered by Groq</span>
+    </footer>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
+
